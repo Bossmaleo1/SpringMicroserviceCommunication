@@ -37,6 +37,7 @@ dependencies {
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
 }
 
 dependencyManagement {

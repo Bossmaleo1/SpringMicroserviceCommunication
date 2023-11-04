@@ -12,7 +12,8 @@ class EmployeeMapper {
                employee.firstName,
                employee.lastName,
                employee.email,
-               employee.departmentCode
+               employee.departmentCode,
+               employee.organizationCode
            )
        }
 
@@ -22,7 +23,8 @@ class EmployeeMapper {
                 employeeDto.firstName,
                 employeeDto.lastName,
                 employeeDto.email,
-                employeeDto.departmentCode
+                employeeDto.departmentCode,
+                employeeDto.organizationCode
             )
         }
     }

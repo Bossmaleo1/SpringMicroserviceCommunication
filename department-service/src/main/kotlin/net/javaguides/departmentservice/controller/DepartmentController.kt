@@ -1,5 +1,8 @@
 package net.javaguides.departmentservice.controller
 
+import io.swagger.v3.oas.annotations.Operation
+import io.swagger.v3.oas.annotations.responses.ApiResponse
+import io.swagger.v3.oas.annotations.tags.Tag
 import lombok.AllArgsConstructor
 import net.javaguides.departmentservice.dto.DepartmentDto
 import net.javaguides.departmentservice.service.DepartmentService
@@ -12,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
+@Tag(
+    name = "Department Service - Department Controller",
+    description = "Department Controller Exposes REST APIs for Department-Service"
+)
 @RestController
 @RequestMapping("api/departments")
 @AllArgsConstructor
@@ -19,12 +26,28 @@ class DepartmentController(
     val departmentService: DepartmentService
 ) {
 
+    @Operation(
+        summary = "Save Department REST API",
+        description = "Save Department REST API is used to save department object in database"
+    )
+    @ApiResponse(
+        responseCode = "201",
+        description = "HTTP Status 201 CREATED"
+    )
     @PostMapping
     fun saveDepartment(@RequestBody departmentDto: DepartmentDto): ResponseEntity<DepartmentDto> {
         val savedDepartment = departmentService.saveDepartment(departmentDto)
         return ResponseEntity<DepartmentDto>(savedDepartment, HttpStatus.CREATED)
     }
 
+    @Operation(
+        summary = "Get Department REST API",
+        description = "Get Department REST API is used to save department object from the database"
+    )
+    @ApiResponse(
+        responseCode = "200",
+        description = "HTTP Status 200 SUCCESS"
+    )
     @GetMapping("{department-code}")
     fun getDepartment(@PathVariable("department-code") departmentCode: String) : ResponseEntity<DepartmentDto> {
         val departmentDto = departmentService.getDepartmentByCode(departmentCode)

@@ -20,5 +20,6 @@ data class Employee (
     val lastName: String,
     @Column(nullable = false, unique = true)
     val email: String,
-    val departmentCode: String
+    val departmentCode: String,
+    val organizationCode: String
 )

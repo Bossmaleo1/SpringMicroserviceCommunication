@@ -5,6 +5,7 @@ import io.github.resilience4j.retry.annotation.Retry
 import net.javaguides.employeeservice.dto.APIResponseDto
 import net.javaguides.employeeservice.dto.DepartmentDto
 import net.javaguides.employeeservice.dto.EmployeeDto
+import net.javaguides.employeeservice.dto.OrganizationDto
 import net.javaguides.employeeservice.entity.Employee
 import net.javaguides.employeeservice.mapper.EmployeeMapper.Companion.mapToEmployee
 import net.javaguides.employeeservice.mapper.EmployeeMapper.Companion.mapToEmployeeDto
@@ -19,6 +20,9 @@ import org.springframework.web.client.RestTemplate
 import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.bodyToMono
 import java.lang.Exception
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.util.*
 
 @Service
 class EmployeeServiceImpl(
@@ -59,6 +63,12 @@ class EmployeeServiceImpl(
             .retrieve()
             .bodyToMono<DepartmentDto>( DepartmentDto::class.java)
             .block()
+
+        val organizationDto: OrganizationDto? = webClient.get()
+            .uri("http://localhost:8083/api/organizations/${employee.organizationCode}")
+            .retrieve()
+            .bodyToMono<OrganizationDto>( OrganizationDto::class.java)
+            .block()
         //val departmentDto: DepartmentDto = apiClient.getDepartment(employee.departmentCode)
 
         val employeeDto = mapToEmployeeDto(employee)
@@ -66,7 +76,8 @@ class EmployeeServiceImpl(
         val apiResponseDto: APIResponseDto? = departmentDto?.let {
             APIResponseDto(
                 employee = employeeDto,
-                department = it
+                department = it,
+                organization = organizationDto!!
             )
         }
 
@@ -91,7 +102,15 @@ class EmployeeServiceImpl(
 
         return APIResponseDto(
             employee = employeeDto,
-            department = departmentDto
+            department = departmentDto,
+            organization = OrganizationDto(
+                id = UUID.randomUUID(),
+                organizationName = "xxx",
+                organizationDescription = "",
+                organizationCode = "",
+                createdDate = LocalDateTime.now(),
+                modifiedDate = LocalDateTime.now()
+            )
         )
     }
 }

@@ -25,6 +25,8 @@ repositories {
 	mavenCentral()
 }
 
+extra["springCloudVersion"] = "2022.0.4"
+
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-web")
@@ -34,6 +36,17 @@ dependencies {
 	runtimeOnly("com.mysql:mysql-connector-j")
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
+	implementation("org.springframework.cloud:spring-cloud-starter-config")
+	implementation("io.zipkin.reporter2:zipkin-reporter-brave")
+	implementation("io.micrometer:micrometer-tracing-bridge-brave")
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
+}
+
+dependencyManagement {
+	imports {
+		mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
+	}
 }
 
 tasks.withType<KotlinCompile> {

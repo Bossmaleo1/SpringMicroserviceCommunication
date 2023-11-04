@@ -11,5 +11,6 @@ import lombok.Setter
 @AllArgsConstructor
 data class APIResponseDto(
     val employee: EmployeeDto,
-    val department: DepartmentDto
+    val department: DepartmentDto,
+    val organization: OrganizationDto
 )

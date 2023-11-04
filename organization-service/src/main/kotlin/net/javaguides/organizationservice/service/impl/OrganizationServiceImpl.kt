@@ -17,4 +17,9 @@ class OrganizationServiceImpl(
 
         return OrganizationMapper.mapToOrganizationDto(savedOrganization)
     }
+
+    override fun getOrganizationByCode(organizationCode: String): OrganizationDto {
+        val organization = organizationRepository.findByOrganizationCode(organizationCode)
+        return OrganizationMapper.mapToOrganizationDto(organization)
+    }
 }
