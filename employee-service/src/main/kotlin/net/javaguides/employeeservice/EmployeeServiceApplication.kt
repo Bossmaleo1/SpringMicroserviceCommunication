@@ -17,10 +17,10 @@ class EmployeeServiceApplication {
 		return RestTemplate()
 	}*/
 
-	/*@Bean
+	@Bean
 	fun webClient(): WebClient {
 		return WebClient.builder().build()
-	}*/
+	}
 }
 
 
