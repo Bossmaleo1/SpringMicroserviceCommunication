@@ -71,3 +71,7 @@ Napi-gateway/src/main/kotlin/net/javaguides/apigateway/ApiGatewayApplication.kt
 dorganization-service/src/main/kotlin/net/javaguides/organizationservice/mapper/OrganizationMapper.kt,2/a/2a6a5d60a54c976af0042ad61b717da70f592720
 Ž
 ^organization-service/src/main/kotlin/net/javaguides/organizationservice/entity/Organization.kt,0/1/01344b96ea9b8231409d582caf13a62ca35ef93f
+9
+	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+˜
+hemployee-service/src/main/kotlin/net/javaguides/employeeservice/currency/CurrencyServiceConfiguration.kt,4/6/4688ebfd276eb6918d31a4232b232046b75d484d
